@@ -8,7 +8,8 @@ pipeline {
 
             steps {
 
-           echo "build"    
+           echo "build" 
+                sh "javac HelloWorld.java"
 
             }
 
@@ -19,6 +20,7 @@ pipeline {
             steps {
 
                echo "test"
+                sh "java HelloWorld"
 
             }
 
