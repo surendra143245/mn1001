@@ -1,41 +1,13 @@
 pipeline {
-
-    agent any
-
-    stages {
-
-        stage('Build') {
-
-            steps {
-
-           echo "build" 
-                sh "javac HelloWorld.java"
-
-            }
-
+  agent any
+  stages {
+    stage ("Print variable") {
+      steps {
+        wrap([$class: "MaskPasswordsBuildWrapper",
+              varPasswordPairs: [[password: MY_PASSWORD]]]) {
+          echo "Password: ${MY_PASSWORD}"
         }
-
-        stage('Test') {
-
-            steps {
-
-               echo "test"
-                sh "java HelloWorld"
-
-            }
-
-        }
-
-        stage('Deploy') {
-
-            steps {
-
-              echo "deploy"
-
-            }
-
-        }
-
+      }
     }
-
+  }
 }
